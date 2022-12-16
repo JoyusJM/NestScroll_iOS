@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NestedScroll_iOS.MainPage">
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto" RowSpacing="10">
+
+            <VerticalStackLayout Grid.Row="0" BackgroundColor="Gray"
+            Spacing="25"
+            Padding="30,0">
+            
+
+            <Image Margin="10"
+                Source="dotnet_bot.png"
+                SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                HeightRequest="100"
+                HorizontalOptions="Center" />
+
+            <Label
+                Text="Nested Scroll"
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="20"
+                HorizontalOptions="Center" />
+
+            <Label Margin="10"
+                Text="Demo of an issue in iOS when there is a nested scroll. In this case parent is a scrollview and containing a collection view in one of the child grid."
+                SemanticProperties.HeadingLevel="Level2"
+                FontSize="16"
+                HorizontalOptions="Center" />
+            <Label Margin="10"
+                Text="**Note: This issue is only present in iOS, working fine in Android**"
+                SemanticProperties.HeadingLevel="Level2"
+                FontSize="16"
+                HorizontalOptions="Center" />
+        </VerticalStackLayout>
+
+        <CollectionView Grid.Row="1" x:Name="collectionView" ItemsSource="{Binding Monkeys}">
+		<CollectionView.ItemsLayout>
+			<LinearItemsLayout Orientation="Vertical" ItemSpacing="40"/>
+
+		</CollectionView.ItemsLayout>
+
+		<CollectionView.ItemTemplate>
+			<DataTemplate>
+				<Grid 
+                    Padding="20,0"
+                    RowDefinitions="Auto,Auto"
+                    ColumnDefinitions="Auto,*"
+                    ColumnSpacing="20" >
+
+
+                    <Label
+                        x:Name="AccountDetailsTitle"
+                        Text="{Binding Title}"
+                        Grid.Column="0"
+                        Grid.RowSpan="2"
+                        VerticalOptions="Center" />
+
+                    <Label
+                        x:Name="AccountDetailsDescription"
+                        TextColor= "Purple"
+                        Text="{Binding Description}"
+                        FontSize="16"
+                        Grid.Column="1"
+                        Grid.RowSpan="2"
+                        HorizontalTextAlignment="End"
+                    />
+        
+                 </Grid>
+			</DataTemplate>
+		</CollectionView.ItemTemplate>
+	</CollectionView>
+
+
+        </Grid>
+   </ScrollView>     
+</ContentPage>
+
